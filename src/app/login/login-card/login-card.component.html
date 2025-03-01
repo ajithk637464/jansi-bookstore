@@ -1,0 +1,51 @@
+<div class="card" style="width:500px;">
+    <div class="card-title d-flex justify-content-center align-items-center" style="background-color: aqua;height:55px;font-family: 'Times New Roman', Times, serif;">
+        <h2>Welcome To Jansi book store</h2>
+    </div>
+    <div class="card-body pt-0">
+        <div>
+            <h3 style="text-align: center;">Log in</h3>
+            <div>
+                <div class="mb-4 d-block" style="min-height: 50px;">
+                    <input class="w-100 border-0 form-control" style="background-color: #f2f2f2;box-shadow: none;" type="text" placeholder="Mobile/Email" />
+                    <!-- <span>Please Enter Email</span> -->
+                    <small class="error m-0 d-block" *ngIf="invalidEmail" style="font-size: 12px;">Please Enter Valid Email</small>
+                </div>
+                <div class="d-block" style="min-width: 50px;">
+                    <input class="w-100 border-0 form-control" style="background-color: #f2f2f2;box-shadow: none;" type="password" placeholder="Password"/>
+                    <!-- <span>Please Enter Password</span> -->
+                    <small class="error m-0 d-block" *ngIf="invalidPassword"  style="font-size: 12px;">Please Enter valid Password</small>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                    <a>Forgot your password?</a>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div>
+                        <button (click)="changevalue()" style="color:#ffffff;background-color: #d51912 !important;" class="btn w-100 border-0 mt-4">Login</button>
+                    </div>
+                    <div class="d-flex justify-content-center mt-2 mb-2">
+                        Or
+                    </div>
+                    <div>
+                        <button class="btn w-100" style="color:#d51912;border-color: #d51912;">Request OTP</button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-4 mb-3">
+                <img src="../public/google.png" />
+            </div>
+            <div>
+                <div>
+                    <div class="d-flex justify-content-center mt-2 mb-2" style="color: #d51912;">
+                        <a>New to Jansi Bookstore ? Sign up</a>
+                    </div>
+                    <div class="d-flex justify-content-center mt-2 mb-2">
+                        <p>By continuing, I agree to the<span style="color:#d51912"> Terms of Use</span> & <span style="color: #d51912;">Privacy Policy</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

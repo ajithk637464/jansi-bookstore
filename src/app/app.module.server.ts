@@ -4,9 +4,14 @@ import { provideServerRouting } from '@angular/ssr';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 import { serverRoutes } from './app.routes.server';
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 
 @NgModule({
-  imports: [AppModule, ServerModule],
+  imports: [
+    AppModule, 
+    ServerModule,
+    FormsModule,
+  ],
   providers: [provideServerRouting(serverRoutes)],
   bootstrap: [AppComponent],
 })
