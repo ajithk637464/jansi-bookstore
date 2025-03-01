@@ -1,0 +1,13 @@
+.vl{
+    border-left: 2px solid #d51912 ;
+    height: 25px;
+  }
+  .nav-item{
+    text-decoration: none; /* Removes underline */
+    color: inherit;
+    cursor: pointer;
+  }
+  .nav-item:hover{
+    color:#d51912 ;
+    font-weight: bold;
+  }

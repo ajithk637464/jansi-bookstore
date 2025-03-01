@@ -1,48 +1,115 @@
 <div class="card" style="width:500px;">
-    <div class="card-title d-flex justify-content-center align-items-center" style="background-color: aqua;height:55px;font-family: 'Times New Roman', Times, serif;">
-        <h2>Welcome To Jansi book store</h2>
+    <div >
+        <img src="assets/images/loginbanner.png" style="width: 100%;" alt="Login banner">
     </div>
-    <div class="card-body pt-0">
+    <div class="card-body pt-0" [formGroup]="loginForm">
         <div>
-            <h3 style="text-align: center;">Log in</h3>
-            <div>
+            <h3 style="text-align: center;">{{cardTitle}}</h3>
+            <!-- Lodin card  -->
+
+            <div *ngIf="isLoginCard">
                 <div class="mb-4 d-block" style="min-height: 50px;">
-                    <input class="w-100 border-0 form-control" style="background-color: #f2f2f2;box-shadow: none;" type="text" placeholder="Mobile/Email" />
-                    <!-- <span>Please Enter Email</span> -->
-                    <small class="error m-0 d-block" *ngIf="invalidEmail" style="font-size: 12px;">Please Enter Valid Email</small>
+                    <input class="w-100 border-0 form-control" formControlName="userName" style="background-color: #f2f2f2;box-shadow: none;" type="text" placeholder="Mobile/Email" />
+                    <div class="error" *ngIf="submitted && myForm['userName'].errors">
+                        <sup>*</sup>Please Enter Valid Email
+                    </div>
                 </div>
                 <div class="d-block" style="min-width: 50px;">
-                    <input class="w-100 border-0 form-control" style="background-color: #f2f2f2;box-shadow: none;" type="password" placeholder="Password"/>
-                    <!-- <span>Please Enter Password</span> -->
-                    <small class="error m-0 d-block" *ngIf="invalidPassword"  style="font-size: 12px;">Please Enter valid Password</small>
+                    <input class="w-100 border-0 form-control" formControlName="password" style="background-color: #f2f2f2;box-shadow: none;" type="password" placeholder="Password"/>
+                    <div class="error" *ngIf="submitted && myForm['password'].errors">
+                        <sup>*</sup>Please Enter Valid Password
+                    </div>
                 </div>
                 <div class="d-flex justify-content-end mt-3">
-                    <a>Forgot your password?</a>
+                    <button class="text-highlight" style="background-color: #ffffff;border: none;" (click)="changeCard('passwordassistent')">Forgot your Password?</button>
                 </div>
             </div>
-            <div>
+            <div *ngIf="isLoginCard"> 
                 <div>
                     <div>
-                        <button (click)="changevalue()" style="color:#ffffff;background-color: #d51912 !important;" class="btn w-100 border-0 mt-4">Login</button>
+                        <button (click)="onSubmit()" style="color:#ffffff;background-color: #d51912 !important;" class="btn w-100 border-0 mt-4">Login</button>
                     </div>
                     <div class="d-flex justify-content-center mt-2 mb-2">
                         Or
                     </div>
-                    <div>
+                    <div >
                         <button class="btn w-100" style="color:#d51912;border-color: #d51912;">Request OTP</button>
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-center mt-4 mb-3">
-                <img src="../public/google.png" />
+            <!-- Lodin card  -->
+
+            <!-- Register card  -->
+
+            <div *ngIf="isRegisterCard">
+                <div class="d-block" style="min-height: 50px;">
+                    
+                    <input class="w-100 border-0 form-control" formControlName="name" style="background-color: #f2f2f2;box-shadow: none;" type="text" placeholder="Name" />
+                    <div class="error" *ngIf="submitted && myForm['name'].errors">
+                        <sup>*</sup>Please Enter Name
+                    </div>
+                </div>
+                <div class="d-block d-flex gap-2 mb-3" style="min-width: 50px;">
+                    <div>
+                        <select [(ngModel)]="selectedValue" class="form-select inputField border-0" style="width:150px;">
+                            <option *ngFor="let country of COUNTRIES" [ngValue]="country">
+                                {{ country.name }} {{ country.dialCode }}
+                            </option>
+                        </select>
+                        <div class="error" *ngIf="submitted && myForm['mobileNumber'].errors">
+                            <sup>*</sup>Please Enter Mobile Number
+                        </div>
+                    </div>
+                    <div class="w-100">
+                        <input class="w-100 border-0 form-control inputField" formControlName="mobileNumber" style="box-shadow: none;" 
+                        type="password" placeholder="Enter Mobile Number"/>
+                    </div>
+                </div>
+                <div class="inputField d-flex align-items-center" style="width:250px;height:70px;">
+                    <div>
+                        <mat-checkbox formControlName="iAmNotRobot">I'm not a robot</mat-checkbox>
+                    </div>
+                </div>
+                <div style="margin-left: 25px;">
+                    <input type="checkbox"> Subscribe to Jansi Newsletter
+                </div>
+                <div class="error" *ngIf="submitted && myForm['iAmNotRobot'].errors">
+                    <sup>*</sup>Please verify captcha
+                </div>
+                <div class="mt-5">
+                    <div>
+                        <button (click)="onSubmit()" class="btn w-100" style="color:#d51912;border-color: #d51912;">Continue</button>
+                    </div>
+                    <div>
+                        <button (click)="changeCard('login')" style="color:#ffffff;background-color: #d51912 !important;" class="btn w-100 border-0 mt-4">Existing User ? Log in</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Register card  -->
+            <!-- Password assistent -->
+
+            <div *ngIf="isPasswordAssistent">
+                <div class="mb-4 d-block" style="min-height: 50px;">
+                    <input class="w-100 border-0 form-control" formControlName="forgotPassword" style="background-color: #f2f2f2;box-shadow: none;" type="text" placeholder="Mobile/Email" />
+                    <div class="error" *ngIf="submitted && myForm['forgotPassword'].errors">
+                        <sup>*</sup>Please Enter Mobile/Email
+                    </div>
+                </div>
+                <div>
+                    <button (click)="onSubmit()" class="btn w-100" style="color:#d51912;border-color: #d51912;">Continue</button>
+                </div>
+            </div>
+            <!-- Password assistent  -->
+            <div *ngIf="!isPasswordAssistent" class="d-flex justify-content-center mt-4 mb-3">
+                <img src="assets/images/google.png" alt="google" width="30px;">
             </div>
             <div>
                 <div>
-                    <div class="d-flex justify-content-center mt-2 mb-2" style="color: #d51912;">
-                        <a>New to Jansi Bookstore ? Sign up</a>
+                    <div *ngIf="isLoginCard || isPasswordAssistent" class="d-flex justify-content-center mt-2 mb-2" style="color: #d51912;">
+                        <button class="text-highlight" style="background-color: #ffffff;border: none;" (click)="changeCard('register')">New to Jansi Bookstore ? Sign up</button>
                     </div>
                     <div class="d-flex justify-content-center mt-2 mb-2">
-                        <p>By continuing, I agree to the<span style="color:#d51912"> Terms of Use</span> & <span style="color: #d51912;">Privacy Policy</span></p>
+                        <p>By continuing, I agree to the<span class="text-highlight"> Terms of Use</span> & <span class="text-highlight">Privacy Policy</span></p>
                     </div>
                 </div>
             </div>

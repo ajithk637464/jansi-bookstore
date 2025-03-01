@@ -1,3 +1,17 @@
 .error{
     color: #d51912 ;
 }
+
+.text-highlight{
+    color: #d51912 ;
+    font-weight: 700;
+}
+.text-highlight:hover{
+    color: #000000 ;
+}
+.inputField{
+    background-color: #f2f2f2;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color:  #f2f2f2;
+}
